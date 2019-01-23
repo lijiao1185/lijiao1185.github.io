@@ -1,5 +1,5 @@
-## 博客
+## WEBSITE
 
 [tyouzu1.github.io](https://tyouzu1.github.io)
 
-使用 Hexo + Next 搭建
+[博客](https://tyouzu1.github.io/blog)
