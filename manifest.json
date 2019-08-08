@@ -1,0 +1,12 @@
+{
+  "short_name": "Razio",
+  "name": "这是 Razio 的博客",
+  "icon": [
+      {
+          "src": "icon.png",
+          "type": "image/png",
+          "sizes": "48x48"
+      }
+  ],
+  "start_url": "index.html"
+}

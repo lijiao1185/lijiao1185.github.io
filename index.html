@@ -4,10 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="baidu-site-verification" content="OE2Os7luGe" />
+  <meta name="baidu-site-verification" content="OE2Os7luGe">
   <title>Razio</title>
+  <link rel="manifest" href="/manifest.json">
 </head>
 <body>
   <h4>我叫张瑞，前端开发工程师，英文名 Razio 。</h4>
+  <script>
+  if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js', {scope: '/'})
+              .then(function (registration) {
+
+                  // 注册成功
+                  console.log('ServiceWorker registration successful with scope: ', registration.scope);
+              })
+              .catch(function (err) {
+
+                  // 注册失败:(
+                  console.log('ServiceWorker registration failed: ', err);
+              });
+      });
+  }
+  </script>
 </body>
 </html>
