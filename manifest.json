@@ -1,6 +1,7 @@
 {
   "short_name": "Razio",
   "name": "这是 Razio 的博客",
+  "display": "standalone",
   "icon": [
       {
           "src": "icon.png",
