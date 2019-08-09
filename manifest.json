@@ -12,6 +12,16 @@
       "src": "https://tyouzu1.github.io/icon_144.png",
       "type": "image/png",
       "sizes": "144x144"
+    },
+    {
+      "sizes": "192x192",
+      "src": "https://h5.sinaimg.cn/m/weibo-lite/icon-default-192.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "512x512",
+      "src": "https://h5.sinaimg.cn/m/weibo-lite/icon-default-512.png",
+      "type": "image/png"
     }
   ],
   "start_url": "/index.html"
