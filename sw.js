@@ -1,35 +1,41 @@
-// 监听 service worker 的 install 事件
-self.addEventListener('install', function (event) {
-  // 如果监听到了 service worker 已经安装成功的话，就会调用 event.waitUntil 回调函数
-  event.waitUntil(
-      // 安装成功后操作 CacheStorage 缓存，使用之前需要先通过 caches.open() 打开对应缓存空间。
-      caches.open('my-test-cache-v1').then(function (cache) {
-          // 通过 cache 缓存对象的 addAll 方法添加 precache 缓存
-          return cache.addAll([
-              '/',
-              '/index.html',
-              // '/main.css',
-              // '/main.js',
-              // '/image.jpg'
-          ]);
-      })
-  );
+var cacheName = 'bs-0-2-0';
+var cacheFiles = [
+    '/',
+    './index.html',
+    // './index.js',
+    // './style.css',
+    // './img/book.png',
+    // './img/loading.svg'
+];
+
+// 监听install事件，安装完成后，进行文件缓存
+self.addEventListener('install', function (e) {
+    console.log('Service Worker 状态： install');
+    var cacheOpenPromise = caches.open(cacheName).then(function (cache) {
+        return cache.addAll(cacheFiles);
+    });
+    e.waitUntil(cacheOpenPromise);
 });
-self.addEventListener('fetch', function(event) {
-    console.log('Fetch event for ', event.request.url);
-    event.respondWith(
-      caches.match(event.request).then(function(response) {
-        if (response) {
-          console.log('Found ', event.request.url, ' in cache');
-          return response;
-        }
-        console.log('Network request for ', event.request.url);
-        return fetch(event.request)
-  
-      }).catch(function(error) {
-  
-        return caches.match('index.html');
-  
-      })
+self.addEventListener('fetch', function (e) {
+    // 如果有cache则直接返回，否则通过fetch请求
+    e.respondWith(
+        caches.match(e.request).then(function (cache) {
+            return cache || fetch(e.request);
+        }).catch(function (err) {
+            console.log(err);
+            return fetch(e.request);
+        })
     );
-  });
+});
+self.addEventListener('activate', function (e) {
+    console.log('Service Worker 状态： activate');
+    var cachePromise = caches.keys().then(function (keys) {
+        return Promise.all(keys.map(function (key) {
+            if (key !== cacheName) {
+                return caches.delete(key);
+            }
+        }));
+    })
+    e.waitUntil(cachePromise);
+    return self.clients.claim();
+});
