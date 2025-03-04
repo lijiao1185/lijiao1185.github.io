@@ -1,5 +1,5 @@
 ## WEBSITE
 
-[tyouzu1.github.io](https://tyouzu1.github.io)
+[lijiao1185.github.io](https://lijiao1185.github.io)
 
-[blog](https://tyouzu1.github.io/blog)
+[logo.svg](https://lijiao1185.github.io/dist/logo.svg)
